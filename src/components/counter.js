@@ -4,7 +4,7 @@ const Counter = ({ number, count }) => (
   <div>
     Hi world<br />
     { number }<br />
-    <button onClick={ count }>+</button>    
+    <button onClick={count}>+</button>
   </div>
 )
 

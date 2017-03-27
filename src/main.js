@@ -10,7 +10,7 @@ class App extends React.Component {
     return <div>
       <BrowserRouter>
         <div>
-          <Route path="/" component={Counter} />
+          <Route path='/' component={Counter} />
         </div>
       </BrowserRouter>
     </div>

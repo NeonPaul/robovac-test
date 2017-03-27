@@ -4,7 +4,7 @@ export const types = enums(
   'COUNT'
 )
 
-export const count  = () => ({
+export const count = () => ({
   type: types.COUNT
 })
 
