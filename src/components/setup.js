@@ -4,10 +4,45 @@ import React from 'react'
 const inputChange = fn =>
   e => fn(e.target.value)
 
-const Setup = ({ rows, cols, setRows, setCols }) => (
+// Pulls out form field values from a submit event, returns them as an object
+const formValues = names =>
+  e => {
+    e.preventDefault()
+    return names.reduce(
+      (obj, name) => {
+        obj[name] = e.target[name].value
+        return obj
+      },
+      {}
+    )
+  }
+
+const Setup = ({ rows, cols, setRows, setCols, dirtLocations, addDirt, removeDirt }) => (
   <div>
-    Rows <input type='number' value={rows} onChange={inputChange(setRows)} /><br />
-    Cols <input type='number' value={cols} onChange={inputChange(setCols)} /><br />
+    <fieldset>
+      <legend>Room size</legend>
+      <label>
+        Rows <input type='number' value={rows} onChange={inputChange(setRows)} />
+      </label>
+      <label>
+        Cols <input type='number' value={cols} onChange={inputChange(setCols)} />
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Dirt</legend>
+      { dirtLocations.map(({ x, y }) =>
+        <div key={y + ',' + x}>
+          {y + ',' + x },
+          <button onClick={() => removeDirt({ x, y })}>Remove</button>
+        </div>
+      ) }
+      <form onSubmit={e => addDirt(formValues(['x', 'y'])(e))}>
+        <input type='number' name='y' max={rows - 1} min='0' step='1' required />,
+        <input type='number' name='x' max={cols - 1} min='0' step='1' required />
+        <button type='submit'>Add</button>
+      </form>
+    </fieldset>
   </div>
 )
 
