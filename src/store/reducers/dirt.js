@@ -27,8 +27,8 @@ export default function reduce (state = defaultState, action) {
       if (dirtIndex(state, action) < 0) {
         return {
           locations: state.locations.concat({
-            x: action.x,
-            y: action.y
+            x: parseInt(action.x, 10),
+            y: parseInt(action.y, 10)
           }),
           removed: state.removed
         }
