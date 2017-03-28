@@ -4,6 +4,7 @@ import store from './store'
 import { Provider } from 'react-redux'
 import Room from './containers/room'
 import Robot from './containers/robot'
+import Controls from './containers/controls'
 import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends React.Component {
@@ -11,9 +12,12 @@ class App extends React.Component {
     return <div>
       <BrowserRouter>
         <Route path='/'>
-          <Room>
-            <Robot />
-          </Room>
+          <div>
+            <Room>
+              <Robot />
+            </Room>
+            <Controls />
+          </div>
         </Route>
       </BrowserRouter>
     </div>

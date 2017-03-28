@@ -5,8 +5,19 @@ var defaultState = {
   y: 0
 }
 
+export const SET_COORDS = ({ x, y }) => ({
+  type: SET_COORDS,
+  x,
+  y
+})
+
 export default function reduce (state = defaultState, action) {
   switch (action.type) {
+    case SET_COORDS:
+      return {
+        x: action.x,
+        y: action.y
+      }
     default:
       return state
   }
