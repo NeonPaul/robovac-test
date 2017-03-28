@@ -2,7 +2,7 @@ import React from 'react'
 
 export const roomStyle = {
   border: '1px solid black',
-  maxHeight: '85vh'
+  maxHeight: '90vh'
 }
 
 const Room = ({ rows, cols, children }) => (

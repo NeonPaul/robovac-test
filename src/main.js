@@ -7,23 +7,31 @@ import Robot from './containers/robot'
 import Controls from './containers/controls'
 import Setup from './containers/setup'
 import DirtCollection from './containers/dirt'
-import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends React.Component {
+  constructor (...args) {
+    super(...args)
+    this.state = {
+      setup: true
+    }
+  }
+
   render () {
     return <div>
-      <BrowserRouter>
-        <Route path='/'>
-          <div>
-            <Room>
-              <Robot />
-              <DirtCollection />
-            </Room>
-            <Controls />
-            <Setup />
-          </div>
-        </Route>
-      </BrowserRouter>
+      { this.state.setup
+        ? <Setup onSubmit={() => this.setState({ setup: false })} />
+      : <div>
+        <div style={{ display: 'inline-block' }}>
+          <Room>
+            <Robot />
+            <DirtCollection />
+          </Room>
+        </div>
+        <div style={{ display: 'inline-block' }}>
+          <Controls />
+        </div>
+      </div>
+      }
     </div>
   }
 }

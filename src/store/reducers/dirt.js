@@ -1,9 +1,5 @@
 var defaultState = {
-  locations: [
-    { x: 1, y: 0 },
-    { x: 0, y: 2 },
-    { x: 4, y: 4 }
-  ],
+  locations: [],
   removed: 0
 }
 

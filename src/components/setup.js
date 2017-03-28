@@ -26,7 +26,7 @@ const CoordInput = ({ upperBound, name, onChange, value }) =>
     required
     onChange={e => (onChange && inputChange(onChange)(e))} />
 
-const Setup = ({ rows, cols, setRows, setCols, dirtLocations, addDirt, removeDirt, setStart, robot }) => (
+const Setup = ({ rows, cols, setRows, setCols, dirtLocations, addDirt, removeDirt, setStart, robot, onSubmit }) => (
   <div>
     <fieldset>
       <legend>Room size</legend>
@@ -58,6 +58,8 @@ const Setup = ({ rows, cols, setRows, setCols, dirtLocations, addDirt, removeDir
       <CoordInput value={robot.y} name='y' upperBound={rows} onChange={y => setStart({y})} />,
       <CoordInput value={robot.x} name='x' upperBound={cols} onChange={x => setStart({x})} />
     </fieldset>
+
+    <button onClick={onSubmit}>Start</button>
   </div>
 )
 

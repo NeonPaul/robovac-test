@@ -1,6 +1,6 @@
 var defaultState = {
-  rows: 6,
-  cols: 5
+  rows: 10,
+  cols: 10
 }
 
 export const SET_ROWS = n => ({
