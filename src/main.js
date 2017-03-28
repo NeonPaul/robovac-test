@@ -2,16 +2,16 @@ import React from 'react'
 import { render } from 'react-dom'
 import store from './store'
 import { Provider } from 'react-redux'
-import Counter from './containers/counter'
+import Room from './containers/room'
 import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends React.Component {
   render () {
     return <div>
       <BrowserRouter>
-        <div>
-          <Route path='/' component={Counter} />
-        </div>
+        <Route path='/'>
+          <Room />
+        </Route>
       </BrowserRouter>
     </div>
   }
