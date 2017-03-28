@@ -28,35 +28,50 @@ const CoordInput = ({ upperBound, name, onChange, value }) =>
 
 const Setup = ({ rows, cols, setRows, setCols, dirtLocations, addDirt, removeDirt, setStart, robot, onSubmit }) => (
   <div>
+    <h1>
+      Welcome to roombot!
+    </h1>
+    <p>
+      Configure your room below then click start to begin.
+      Coördinates are relative to the bottom-left corner of the room.
+    </p>
     <fieldset>
       <legend>Room size</legend>
       <label>
-        Rows <input type='number' value={rows} onChange={inputChange(setRows)} />
-      </label>
+        Height <input type='number' value={rows} onChange={inputChange(setRows)} />
+      </label><br />
       <label>
-        Cols <input type='number' value={cols} onChange={inputChange(setCols)} />
+        Width <input type='number' value={cols} onChange={inputChange(setCols)} />
       </label>
     </fieldset>
 
     <fieldset>
       <legend>Dirt</legend>
-      { dirtLocations.map(({ x, y }) =>
-        <div key={y + ',' + x}>
-          {y + ',' + x },
+      <p>
+        Enter 0 or more dirt patches.
+        They will be represented by brown squares on the grid.
+        Make sure you click Add after you enter your dirt coördinates!
+      </p>
+      <ul>{ dirtLocations.map(({ x, y }) =>
+        <li key={y + ',' + x}>
+          y: { y }, x: { x }
           <button onClick={() => removeDirt({ x, y })}>Remove</button>
-        </div>
-      ) }
+        </li>
+      ) }</ul>
       <form onSubmit={e => addDirt(formValues(['x', 'y'])(e))}>
-        <CoordInput name='y' upperBound={rows} />,
-        <CoordInput name='x' upperBound={cols} />
+        y: <CoordInput name='y' upperBound={rows} /><br />
+        x: <CoordInput name='x' upperBound={cols} /><br />
         <button type='submit'>Add</button>
       </form>
     </fieldset>
 
     <fieldset>
       <legend>Staring point</legend>
-      <CoordInput value={robot.y} name='y' upperBound={rows} onChange={y => setStart({y})} />,
-      <CoordInput value={robot.x} name='x' upperBound={cols} onChange={x => setStart({x})} />
+      <p>
+        Specifies where the robot starts in the room.
+      </p>
+      y: <CoordInput value={robot.y} name='y' upperBound={rows} onChange={y => setStart({y})} /><br />
+      x: <CoordInput value={robot.x} name='x' upperBound={cols} onChange={x => setStart({x})} />
     </fieldset>
 
     <button onClick={onSubmit}>Start</button>
