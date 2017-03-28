@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import Room from './containers/room'
 import Robot from './containers/robot'
 import Controls from './containers/controls'
+import Setup from './containers/setup'
 import DirtCollection from './containers/dirt'
 import { BrowserRouter, Route } from 'react-router-dom'
 
@@ -19,6 +20,7 @@ class App extends React.Component {
               <DirtCollection />
             </Room>
             <Controls />
+            <Setup />
           </div>
         </Route>
       </BrowserRouter>
