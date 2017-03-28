@@ -1,4 +1,5 @@
 import { SET_COORDS } from '../reducers/robot'
+import { REMOVE_DIRT } from '../reducers/dirt'
 
 // These functions translate the position of the robot in the room
 const NORTH = ({ x, y }) => ({ x, y: y + 1 })
@@ -18,6 +19,7 @@ const move = translate =>
     // Make sure new coords are within the room boundry
     if (x < room.cols && x >= 0 && y < room.rows && y >= 0) {
       dispatch(SET_COORDS({ x, y }))
+      dispatch(REMOVE_DIRT({ x, y }))
     }
   }
 
