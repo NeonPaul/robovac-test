@@ -17,7 +17,16 @@ const formValues = names =>
     )
   }
 
-const Setup = ({ rows, cols, setRows, setCols, dirtLocations, addDirt, removeDirt }) => (
+const CoordInput = ({ upperBound, name, onChange, value }) =>
+  <input type='number'
+    name={name}
+    value={value}
+    max={upperBound - 1}
+    min='0' step='1'
+    required
+    onChange={e => (onChange && inputChange(onChange)(e))} />
+
+const Setup = ({ rows, cols, setRows, setCols, dirtLocations, addDirt, removeDirt, setStart, robot }) => (
   <div>
     <fieldset>
       <legend>Room size</legend>
@@ -38,10 +47,16 @@ const Setup = ({ rows, cols, setRows, setCols, dirtLocations, addDirt, removeDir
         </div>
       ) }
       <form onSubmit={e => addDirt(formValues(['x', 'y'])(e))}>
-        <input type='number' name='y' max={rows - 1} min='0' step='1' required />,
-        <input type='number' name='x' max={cols - 1} min='0' step='1' required />
+        <CoordInput name='y' upperBound={rows} />,
+        <CoordInput name='x' upperBound={cols} />
         <button type='submit'>Add</button>
       </form>
+    </fieldset>
+
+    <fieldset>
+      <legend>Staring point</legend>
+      <CoordInput value={robot.y} name='y' upperBound={rows} onChange={y => setStart({y})} />,
+      <CoordInput value={robot.x} name='x' upperBound={cols} onChange={x => setStart({x})} />
     </fieldset>
   </div>
 )
